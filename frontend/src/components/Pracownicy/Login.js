@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import axiosInstance from "./AxiosInstance";
 import { useNavigate} from "react-router-dom";
 import AuthContext from "../Utilities/Context";
+import Alert from 'react-bootstrap/Alert';
 
 
 const Login = () => {
@@ -66,7 +67,7 @@ const Login = () => {
             axiosInstance.defaults.headers['Authorization'] = 
             'JWT ' + localStorage.getItem('access_token');
             authCtx.login(localStorage.getItem('access_token'))
-            navigate('/aktualnosci');
+            navigate('/');
         })
         .catch((error) => {
             setErrors(error)
@@ -92,6 +93,7 @@ const Login = () => {
                                 handlePassword(e);
                             }} />
                         </Form.Group>
+                        {errors && <Alert className='my-2' variant={'danger'}>Nieprawidłowe dane logowania</Alert>}
                         <Button className="me-3" variant="primary" type="submit" onClick={handleSubmit}>
                             Zaloguj się
                         </Button>

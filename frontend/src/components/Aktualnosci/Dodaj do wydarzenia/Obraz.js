@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import Alert from 'react-bootstrap/Alert';
 
 function Obraz(props) {
   // Show - Hide - Modal on WydarzenieOsobno component
@@ -87,6 +88,7 @@ function Obraz(props) {
             </Form>
         </Modal.Body>
         <Modal.Footer>
+        {errors && <Alert className='my-2 ' variant={'danger'}>Wystąpił błąd</Alert>}
            <Button variant="primary" form='addphoto' type="submit" onClick={handleSubmit}>
                 Dodaj zdjęcia
               </Button>

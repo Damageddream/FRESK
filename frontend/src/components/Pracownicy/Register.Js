@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import axiosInstance from "./AxiosInstance";
 import { useNavigate} from "react-router-dom";
+import Alert from 'react-bootstrap/Alert';
 
 
 const Register = () => {
@@ -15,6 +16,9 @@ const Register = () => {
     //states for loading when fetching data and catching errors from fetching
     const [errors, setErrors] = useState();
     const [isLoading, setIsLoading] = useState(false);
+
+    //state for alert - success register
+    const [success, setSuccess] = useState(false);
 
     // states for password, email and username to create User
     const [form, setForm] = useState({
@@ -49,6 +53,8 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         setIsLoading(true);
+        setSuccess(false)
+        setErrors()
         e.preventDefault()
 
         axiosInstance.post(
@@ -60,12 +66,18 @@ const Register = () => {
 
         )
         .then(() => {
-            navigate('/aktualnosci')
+            setSuccess(true)
+            setForm({
+                password: '',
+                username: '',
+                email: '',
+            })
+            setIsLoading(false);
         })
         .catch((error) => {
             setErrors(error)
         })
-        setIsLoading(false);
+       
     }
 
 
@@ -77,22 +89,24 @@ const Register = () => {
             <Form>
                         <Form.Group className="mb-3 mt-3">
                     <Form.Label>Nazwa uzytkownika</Form.Label>
-                    <Form.Control type="text" placeholder="Nazwa uzytkownika" onChange={(e) => {
+                    <Form.Control type="text" value={form.username} placeholder="Nazwa uzytkownika" onChange={(e) => {
                         handleUsername(e);
                     }} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" placeholder="Podaj email" onChange={(e) => {
+                    <Form.Control type="email" value={form.email} placeholder="Podaj email" onChange={(e) => {
                         handleEmail(e);
                     }} />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Hasło</Form.Label>
-                    <Form.Control type="password" placeholder="Hasło" onChange={(e) => {
+                    <Form.Control type="password" value={form.password} placeholder="Hasło" onChange={(e) => {
                         handlePassword(e);
                     }} />
                 </Form.Group>
+                {errors && <Alert className='my-2 ' variant={'danger'}>Wystąpił błąd</Alert>}
+                {success && <Alert className='mt-2' variant={'success'}>Pomyślnie zarejestrowano użytkownika</Alert>}
                         <Button className="me-3" variant="primary" type="submit" onClick={handleSubmit}>
                     Zarejestruj się
                 </Button>

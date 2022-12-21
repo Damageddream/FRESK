@@ -13,7 +13,7 @@ class Aktualnosci(models.Model):
     title = models.CharField(max_length=64, )
     title_image = models.ImageField(null=True, blank=True, upload_to="images/")
     content = models.JSONField(default=[])
-    content_preview = models.TextField(max_length=300, null=True, blank=True)
+    content_preview = models.TextField(max_length=800, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     archived = models.BooleanField(default=False)
 

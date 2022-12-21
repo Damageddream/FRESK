@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import RichText from '../Utilities/RichText'
 import "../Utilities/RichText.css";
 import axios from "axios";
+import Alert from 'react-bootstrap/Alert';
 
 
 const DodajWydarzenie = (props) => {
@@ -134,7 +135,7 @@ const DodajWydarzenie = (props) => {
                 onChange={(e) => {
                   handleTitle_imageChange(e);
                 }}
-                isInvalid={!!errors}
+                isInvalid={false}
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -157,6 +158,7 @@ const DodajWydarzenie = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
+        {errors && <Alert className='my-2 ' variant={'danger'}>Wystąpił błąd, sprawdź czy wszystko uzupełniłeś</Alert>}
           <Button
             variant="primary"
             type="submit"

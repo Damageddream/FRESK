@@ -6,6 +6,7 @@ import RichText from "../../Utilities/RichText";
 import "../../Utilities/RichText.css";
 import axios from "axios";
 import { useNavigate} from "react-router-dom";
+import Alert from 'react-bootstrap/Alert';
 
 const EdytujWydarzenie = (props) => {
 
@@ -162,6 +163,7 @@ const EdytujWydarzenie = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
+        {errors && <Alert className='my-2 ' variant={'danger'}>Wystąpił błąd, sprawdź czy wszystko uzupełniłeś</Alert>}
           <Button
             variant="primary"
             type="submit"
