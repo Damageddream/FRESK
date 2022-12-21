@@ -18,7 +18,7 @@ import AuthContext from '../Utilities/Context';
 		localStorage.removeItem('refresh_token');
 		axiosInstance.defaults.headers['Authorization'] = null;
 		authCtx.logout()
-        navigate('/aktualnosci');
+        navigate('/');
 	});
 	return <div>Logout</div>;
 }
