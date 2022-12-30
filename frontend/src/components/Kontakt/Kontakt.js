@@ -163,7 +163,6 @@ const Kontakt = () => {
             </Button>
             {success && <Alert className='mt-2' variant={'success'}>Wysłano informację, dziękujemy</Alert>}
           </Form>
-
         </Col>
       </Row>
     </Row>

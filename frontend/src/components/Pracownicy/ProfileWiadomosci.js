@@ -47,7 +47,7 @@ const ProfilWiadomosci = () => {
             {!errors && file.length > 0 &&
                 <Accordion>
                     {file.map((wiadomosc) => (
-                        <AccordionItem eventKey={wiadomosc.id}>
+                        <AccordionItem className='mb-5' eventKey={wiadomosc.id}>
                             <AccordionHeader>
                                 Wiadomość od {wiadomosc.name}
                             </AccordionHeader>

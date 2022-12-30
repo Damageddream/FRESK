@@ -11,7 +11,7 @@ const Aktualnosci = () => {
   };
 
   return (
-    <div>
+    <div data-testid='aktualnosci-1'>
       <Jumbotron title={opis.title} photo={opis.photo} />
       <ListaAktualnosci />
     </div>
