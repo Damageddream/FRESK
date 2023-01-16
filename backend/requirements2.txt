@@ -5,7 +5,6 @@ djangorestframework==3.14.0
 djangorestframework_simplejwt==4.8.0
 corsheaders
 pillow
-django-environ
 
 Javascript:
 
