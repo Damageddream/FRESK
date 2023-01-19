@@ -3,12 +3,15 @@ services:
   nginx:
     container_name: core_web
     restart: on-failure
-    image: nginx:stable
+    image: jonasal/nginx-cerbot:latest
+    env_file:
+      - .env.nginx
     volumes:
-      - ./nginx/nginx.dev.conf:/etc/nginx/conf.d/default.conf
-      - static_volume:/backend/static
+      - nginx_secrets:/etc/letsencrypt
+      - ./nginx/user_conf.d:/etc/nginx/user_conf.d
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - web
   web:
@@ -36,3 +39,4 @@ services:
 volumes:
   static_volume:
   postgres_data:
+  nginx_secrets:        
