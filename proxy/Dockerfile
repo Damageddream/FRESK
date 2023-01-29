@@ -1,14 +1,3 @@
-FROM node:14-buster-slim AS builder
-
-# Set working directory for react project
-WORKDIR ./frontend
-COPY ["package.json", "package-lock.json", "./"]
-COPY ["public/", "public/"]
-COPY ["src/", "src/"]
-RUN npm install
-RUN npm run build
-
-
 FROM nginxinc/nginx-unprivileged:1-alpine
 LABEL maintainer="dd"
 
@@ -31,5 +20,4 @@ RUN mkdir -p /vol/static && \
 VOLUME /vol/static
 
 USER nginx
-COPY --from=builder /frontend/build .
 CMD ["/run.sh"]

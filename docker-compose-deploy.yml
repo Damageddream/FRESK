@@ -29,13 +29,12 @@ services:
 
   proxy:
     build:
-      context: ./frontend
+      context: ./proxy
     restart: always
     depends_on:
       - app
     ports:
       - 80:8000
-      - 443:443
     volumes:
       - static-data:/vol/static
 
